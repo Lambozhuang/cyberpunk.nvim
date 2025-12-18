@@ -27,7 +27,7 @@ local function make_editor_highlights(theme, settings)
   local highlights = {
     Header       = { fg = theme.white,                 bg = theme.none,              theme.none },
     Normal       = { fg = theme.main,                  bg = bg,                      theme.none },
-    Visual       = { fg = theme.black,                 bg = theme.main,            theme.none },
+    Visual       = { fg = theme.black,                 bg = theme.secondary_accent_hard,            theme.none },
     ColorColumn  = { fg = theme.none,                  bg = theme.none,              theme.none },
     LineNr       = { fg = theme.main,                  bg = theme.none,              theme.none },
     SignColumn   = { fg = theme.secondary_accent,      bg = theme.none,              theme.none },
@@ -97,6 +97,8 @@ local function make_editor_highlights(theme, settings)
     NeoTreeNormal = { fg = theme.main,                 bg = bg,                      theme.none },
     NeoTreeNormalNC = { fg = theme.main,               bg = bg,                      theme.none },
     NvimTreeNormal = { fg = theme.main,                bg = bg,                      theme.none },
+
+    LspReferenceText = { fg = theme.yellow, bg = theme.none, style = theme.bold },
 
   }
 
