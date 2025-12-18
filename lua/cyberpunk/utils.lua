@@ -49,7 +49,7 @@ local function make_editor_highlights(theme, settings)
     Cursor       = { fg = theme.none,                  bg = theme.secondary_accent,  theme.none },
     CursorColumn = { fg = theme.none,                  bg = theme.secondary_accent,  theme.none },
     CursorIM     = { fg = theme.none,                  bg = theme.none,              theme.none },
-    CursorLineNr = { fg = theme.dark,                  bg = theme.secondary_accent,            theme.none },
+    CursorLineNr = { fg = theme.yellow,                bg = theme.black,             style = theme.underline },
     -- Code
     Comment      = { fg = theme.secondary_hard,        bg = theme.none,              theme.none },
     String       = { fg = theme.accent,                bg = theme.none,              theme.none },
