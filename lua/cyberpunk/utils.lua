@@ -27,7 +27,7 @@ local function make_editor_highlights(theme, settings)
   local highlights = {
     Header       = { fg = theme.white,                 bg = theme.none,              theme.none },
     Normal       = { fg = theme.main,                  bg = bg,                      theme.none },
-    Visual       = { fg = theme.black,                 bg = theme.yellow,            theme.none },
+    Visual       = { fg = theme.black,                 bg = theme.main,            theme.none },
     ColorColumn  = { fg = theme.none,                  bg = theme.none,              theme.none },
     LineNr       = { fg = theme.main,                  bg = theme.none,              theme.none },
     SignColumn   = { fg = theme.secondary_accent,      bg = theme.none,              theme.none },
