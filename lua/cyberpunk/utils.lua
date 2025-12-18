@@ -21,10 +21,13 @@ local function set_highlights(highlights)
 end
 
 local function make_editor_highlights(theme, settings)
+  local bg = settings.transparent and theme.none or theme.background_main
+  local bg_accent = settings.transparent and theme.none or theme.background_accent
+  
   local highlights = {
     Header       = { fg = theme.white,                 bg = theme.none,              theme.none },
-    Normal       = { fg = theme.main,                  bg = theme.background_main,   theme.none },
-    Visual       = { fg = theme.none,                  bg = theme.base,              theme.none },
+    Normal       = { fg = theme.main,                  bg = bg,                      theme.none },
+    Visual       = { fg = theme.black,                 bg = theme.yellow,            theme.none },
     ColorColumn  = { fg = theme.none,                  bg = theme.none,              theme.none },
     LineNr       = { fg = theme.main,                  bg = theme.none,              theme.none },
     SignColumn   = { fg = theme.secondary_accent,      bg = theme.none,              theme.none },
@@ -32,7 +35,7 @@ local function make_editor_highlights(theme, settings)
     DiffDelete   = { fg = theme.none,                  bg = theme.red,               theme.none },
     DiffText     = { fg = theme.none,                  bg = theme.secondary_accent,  theme.none },
     DiffChnage   = { fg = theme.none,                  bg = theme.none,              theme.none },
-    VertSplit    = { fg = theme.main,                  bg = theme.background_accent, theme.none },
+    VertSplit    = { fg = theme.main,                  bg = bg_accent,               theme.none },
     IncSearch    = { fg = theme.none,                  bg = theme.secondary_light,   theme.none },
     Search       = { fg = theme.black,                 bg = theme.yellow,            theme.none },
     Substitute   = { fg = theme.none,                  bg = theme.secondary_light,   theme.none },
@@ -42,11 +45,11 @@ local function make_editor_highlights(theme, settings)
     WildMenu     = { fg = theme.secondary_accent,      bg = theme.none,              theme.bold },
     Directory    = { fg = theme.secondary_accent,      bg = theme.none,              theme.none },
     Title        = { fg = theme.secondary_med,         bg = theme.none,              theme.none },
-    CursorLine   = { fg = theme.none,                  bg = theme.background_main,   style = theme.underline },
+    CursorLine   = { fg = theme.none,                  bg = theme.black,             style = theme.underline },
     Cursor       = { fg = theme.none,                  bg = theme.secondary_accent,  theme.none },
     CursorColumn = { fg = theme.none,                  bg = theme.secondary_accent,  theme.none },
     CursorIM     = { fg = theme.none,                  bg = theme.none,              theme.none },
-    CursorLineNr = { fg = theme.dark,                  bg = theme.yellow,            theme.none },
+    CursorLineNr = { fg = theme.dark,                  bg = theme.secondary_accent,            theme.none },
     -- Code
     Comment      = { fg = theme.secondary_hard,        bg = theme.none,              theme.none },
     String       = { fg = theme.accent,                bg = theme.none,              theme.none },
@@ -74,13 +77,13 @@ local function make_editor_highlights(theme, settings)
     WarningMsg   = { fg = theme.secondary_accent,      bg = theme.none,              theme.none },
     Special      = { fg = theme.secondary_accent_med,  bg = theme.none,              style = "italic" },
     -- Pmenu
-    Pmenu        = { fg = theme.main,                  bg = theme.dark,              theme.none },
+    Pmenu        = { fg = theme.main,                  bg = settings.transparent and theme.none or theme.dark,              theme.none },
     PmenuSel     = { fg = theme.dark,                  bg = theme.main,              theme.none },
     PmenuSbar    = { fg = theme.none,                  bg = theme.main,              theme.none },
     PmenuThumb   = { fg = theme.none,                  bg = theme.none,              theme.none },
     -- Status line
-    StatusLine   = { fg = theme.main,                  bg = "#1d000a",               style = theme.bold },
-    StatusLineNC = { fg = theme.main,                  bg = theme.black,             theme.none },
+    StatusLine   = { fg = theme.main,                  bg = settings.transparent and theme.none or "#1d000a",               style = theme.bold },
+    StatusLineNC = { fg = theme.main,                  bg = settings.transparent and theme.none or theme.black,             theme.none },
     -- Tab pages
     TabLine      = { fg = theme.main_hard,             bg = theme.none,              theme.none },
     TabLineFill  = { fg = theme.none,                  bg = theme.none,              theme.none },
@@ -88,6 +91,12 @@ local function make_editor_highlights(theme, settings)
     -- Folds
     Folded       = { fg = theme.secondary_accent,      bg = theme.none,              style = "italic" },
     FoldColumn   = { fg = theme.secondary_accent,      bg = theme.none,              theme.none },
+    -- Transparent sidebars and floats
+    NormalFloat  = { fg = theme.main,                  bg = settings.transparent and theme.none or theme.dark,              theme.none },
+    FloatBorder  = { fg = theme.main,                  bg = settings.transparent and theme.none or theme.dark,              theme.none },
+    NeoTreeNormal = { fg = theme.main,                 bg = bg,                      theme.none },
+    NeoTreeNormalNC = { fg = theme.main,               bg = bg,                      theme.none },
+    NvimTreeNormal = { fg = theme.main,                bg = bg,                      theme.none },
 
   }
 
@@ -96,7 +105,7 @@ end
 
 function utils.configure(opts)
   opts = opts or {}
-  utils.settings = vim.tbl_deep_extend("force", {}, opts, { theme = "dark" })
+  utils.settings = vim.tbl_deep_extend("force", { theme = "dark", transparent = false }, opts)
 end
 
 function utils.setup_theme()

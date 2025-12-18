@@ -1,22 +1,57 @@
 # cyberpunk.nvim
-Lua port of the vim [cyberpunk colorscheme](https://github.com/thedenisnikulin/vim-cyberpunk)
+A cyberpunk colorscheme for Neovim
 
-### Installation
+## Installation
+
+### lazy.nvim (LazyVim)
+
+```lua
+{
+  "Lambozhuang/cyberpunk.nvim",
+  opts = {
+    transparent = false  -- set to true for transparent background
+  }
+}
+```
+
+Then set your colorscheme:
+
+```lua
+{
+  "LazyVim/LazyVim",
+  opts = {
+    colorscheme = "cyberpunk",
+  }
+}
+```
+
+### Other Plugin Managers
 
 #### Packer
-
-```vim
-use 'samueljoli/cyberpunk.nvim'
+```lua
+use {
+  'Lambozhuang/cyberpunk.nvim',
+  config = function()
+    require('cyberpunk').setup({
+      transparent = false
+    })
+  end
+}
 ```
 
 #### Plug
 ```vim
-Plug 'samueljoli/cyberpunk'
+Plug 'Lambozhuang/cyberpunk.nvim'
 ```
 
-### Usage
+Then in your config:
 ```lua
-require('cyberpunk').setup {
-  theme = 'dark'
-}
+require('cyberpunk').setup({
+  transparent = false
+})
+vim.cmd('colorscheme cyberpunk')
 ```
+
+## Options
+
+- `transparent` (boolean): Enable transparent background. Default: `false`
